@@ -1,8 +1,11 @@
 #include <SFML/Graphics.hpp>
+#include <thread>
+
+
 
 int main()
 {
-    auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "CMake SFML Project");
+    sf::RenderWindow window(sf::VideoMode({ 1980u, 1240u}), "Gravity Simulation", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(144);
 
     while (window.isOpen())
@@ -16,6 +19,7 @@ int main()
         }
 
         window.clear();
+        // Draw here
         window.display();
     }
 }
