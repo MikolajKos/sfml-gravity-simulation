@@ -1,11 +1,13 @@
 #include <SFML/Graphics.hpp>
+#include "includes/GravitySource.hpp"
+#include "includes/Particle.hpp"
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode({ 1980u, 1240u}), "Gravity Simulation", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(144);
 
-
+    GravitySource sun(1980 / 2, 1240 / 2, 2000, 30);
 
     while (window.isOpen())
     {
@@ -18,7 +20,9 @@ int main()
         }
 
         window.clear();
-        // Draw here
+        
+        sun.render(window);
+
         window.display();
     }
 }

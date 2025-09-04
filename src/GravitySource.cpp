@@ -8,6 +8,7 @@ GravitySource::GravitySource(float pos_x, float pos_y, float strength, float rad
 	circle.setPosition(position);
 	circle.setRadius(radius);
 	circle.setFillColor(sf::Color::White);
+	circle.setOrigin({ radius, radius });
 }
 
 void GravitySource::render(sf::RenderWindow& window) {
