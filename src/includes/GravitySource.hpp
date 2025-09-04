@@ -13,8 +13,8 @@ public:
 	GravitySource(float pos_x, float pos_y, float strength, float radius);
 
 	void render(sf::RenderWindow& window);
-	sf::Vector2f get_position();
-	float get_strength();
+	sf::Vector2f get_position() const;
+	float get_strength() const;
 
 };
 

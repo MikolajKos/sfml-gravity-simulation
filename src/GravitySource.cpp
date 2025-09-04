@@ -15,6 +15,6 @@ void GravitySource::render(sf::RenderWindow& window) {
 	window.draw(circle);
 }
 
-sf::Vector2f GravitySource::get_position() { return position; }
+sf::Vector2f GravitySource::get_position() const { return position; }
 
-float GravitySource::get_strength() { return strength; }
+float GravitySource::get_strength() const { return strength; }
