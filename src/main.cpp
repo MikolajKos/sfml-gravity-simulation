@@ -1,12 +1,11 @@
 #include <SFML/Graphics.hpp>
-#include <thread>
-
-
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode({ 1980u, 1240u}), "Gravity Simulation", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(144);
+
+
 
     while (window.isOpen())
     {
