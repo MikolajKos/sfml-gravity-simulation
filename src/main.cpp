@@ -7,9 +7,15 @@ int main()
     sf::RenderWindow window(sf::VideoMode({ 1980u, 1240u}), "Gravity Simulation", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(144);
 
-    GravitySource star({1,-0.2}, 1980 / 2, 1240 / 2, 4000, 50);
-    Particle planet(1980 / 2, 200, 3, 0, 20);
-    Particle planet2(200, 300, 1, -1, 20);
+    // Creating objects for simulation
+    std::vector<GravitySource> stars;
+    stars.emplace_back(sf::Vector2f(0, -1), 1980 / 2, 1240 / 2, 4000, 50);
+    stars.emplace_back(sf::Vector2f(-1, 2), (1980 / 2) + 500, (1240 / 2) - 200, 4000, 50);
+
+    std::vector<Particle> planets;
+    //planets.emplace_back(1980 / 2, 200, 3, 0, 10);
+    //planets.emplace_back(200, 300, 1, -1, 5);
+    //planets.emplace_back(500, 500, 1, -2, 20);
 
     while (window.isOpen())
     {
@@ -23,13 +29,15 @@ int main()
 
         window.clear();
 
-        star.render(window);
-        planet.render(window);
-        planet2.render(window);
+        for (auto& star : stars) {
+            star.update_physics();
+            star.render(window);
+        }
 
-        star.update_physics();
-        planet.update_physics(star);
-        planet2.update_physics(star);
+        for (auto& particle : planets) {
+            particle.update_physics(stars[0]); // Temporary stars[0]
+            particle.render(window);
+        }
 
         window.display();
     }
