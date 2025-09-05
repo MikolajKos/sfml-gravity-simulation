@@ -1,9 +1,13 @@
 #include "includes/GravitySource.hpp"
 
-GravitySource::GravitySource(float pos_x, float pos_y, float strength, float radius) : 
+GravitySource::GravitySource(sf::Vector2f vel, float pos_x, float pos_y, float strength, float radius) :
 	strength(strength), radius(radius) {
 	position.x = pos_x;
 	position.y = pos_y;
+
+	velocity = vel;
+
+	clock.start();
 
 	circle.setPosition(position);
 	circle.setRadius(radius);
@@ -12,7 +16,13 @@ GravitySource::GravitySource(float pos_x, float pos_y, float strength, float rad
 }
 
 void GravitySource::render(sf::RenderWindow& window) {
+	circle.setPosition(position);
 	window.draw(circle);
+}
+
+void GravitySource::update_physics() {
+	float dt = clock.restart().asSeconds() * 100;
+	position += velocity * dt;
 }
 
 sf::Vector2f GravitySource::get_position() const { return position; }

@@ -5,14 +5,17 @@
 
 class GravitySource {
 	sf::Vector2f position;
+	sf::Vector2f velocity;
 	sf::CircleShape circle;
+	sf::Clock clock;
 	float strength;
 	float radius;
 
 public:
-	GravitySource(float pos_x, float pos_y, float strength, float radius);
+	GravitySource(sf::Vector2f vel, float pos_x, float pos_y, float strength, float radius);
 
 	void render(sf::RenderWindow& window);
+	void update_physics();
 	sf::Vector2f get_position() const;
 	float get_strength() const;
 
